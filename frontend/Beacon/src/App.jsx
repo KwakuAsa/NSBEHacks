@@ -65,7 +65,7 @@ const styles = `
   .brand span {
     color: #ff4b4b;
   }
-
+ 
   .form-heading {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
@@ -413,6 +413,7 @@ export default function LoginPage() {
           )}
  
           {/* Last Name */}  
+          {mode === "signup" && (
             <div className="form-field">
               <label className="field-label-custom">Last Name</label>
               <input
@@ -423,8 +424,10 @@ export default function LoginPage() {
                 onChange={e => setLastName(e.target.value)}
               />
             </div>
+          )}
 
-          {/* Email */}
+          {/* Email (Log-in) */}
+          {mode === "login" && (
           <div className="form-field">
             <label className="field-label-custom">Email</label>
             <input
@@ -435,8 +438,24 @@ export default function LoginPage() {
               onChange={e => setEmail(e.target.value)}
             />
           </div>
+          )}
 
-          {/* Password */}
+          {/* Email (Sign-Up) */}
+          {mode === "signup" && (
+          <div className="form-field">
+            <label className="field-label-custom">Email</label>
+            <input
+              className="input-dark"
+              type="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </div>
+          )}
+
+          {/* Password  (Log-in) */}
+          {mode === "login" && (
           <div className="form-field">
             <label className="field-label-custom">Password</label>
             <input
@@ -447,6 +466,22 @@ export default function LoginPage() {
               onChange={e => setPassword(e.target.value)}
             />
           </div>
+          )}
+
+          {/* Password  (Sign-Up) */}
+          {mode === "signup" && (
+          <div className="form-field">
+            <label className="field-label-custom">Password</label>
+            <input
+              className="input-dark"
+              type="password"
+              placeholder="••••••••"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
+
+          )}
 
           {mode === "login" && (
             <div className="forgot-link">
