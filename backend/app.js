@@ -4,6 +4,7 @@ const authRoutes = require("./src/routes/auth.routes");
 const userRoutes = require("./src/routes/user.routes");
 const resumeRoutes = require("./src/routes/resume.routes");
 const exploreRoutes = require("./src/routes/explore.routes");
+const roadmapRoutes = require("./src/routes/roadmap.routes");
 
 // const errorHandler = require("./middleware/error.middleware");
 
@@ -12,10 +13,11 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/auth", authRoutes);
-app.use("/users", userRoutes);
-app.use("/resumes", resumeRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/resumes", resumeRoutes);
 app.use("/api/explore", exploreRoutes);
+app.use("/api/roadmap/", roadmapRoutes);
 
 //app.use(errorHandler);no
 
