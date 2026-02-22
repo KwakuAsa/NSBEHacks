@@ -75,4 +75,24 @@ async function generateRoadmap(req, res) {
     }
 }
 
-module.exports = { generateRoadmap };
+async function getAllRoadMaps(req, res) {
+    try {
+        const { userId } = req.params;
+        if (!userId) return res.status(400).json({ message: "Missing userId" });
+
+        const { data, error } = await supabase
+            .from("roadmaps")
+            .select("id,user_id,created_at,target_title,target_type,industry,used_resume,resume_id,summary,raw_json")
+            .eq("user_id", userId)
+            .order("created_at", { ascending: false });
+
+        if (error) return res.status(400).json({ message: error.message });
+
+        return res.json({ roadmaps: data || [] });
+    } catch (e) {
+        return res.status(500).json({ message: e.message });
+    }
+
+}
+
+module.exports = { generateRoadmap, getAllRoadMaps };
