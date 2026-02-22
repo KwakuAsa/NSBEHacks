@@ -9,9 +9,9 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/auth", authRoutes);
-app.use("/users", userRoutes);
-
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+//app.use("/api/resumes", resumeRoutes);
 //app.use(errorHandler);no
 
 module.exports = app;

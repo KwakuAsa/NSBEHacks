@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap');
@@ -333,31 +334,38 @@ export default function LoginPage() {
   const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   async function handleSubmit() {
     setError("");
-    const url = mode === "login"
-     ? "http://localhost:5000/api/auth/login"
-     : "http://localhost:5000/api/auth/register";
+    const url = mode === "login" ? "/api/auth/login" : "/api/auth/register";
 
-     try {
+    try {
       const res = await fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json"},
-        body: JSON.stringify({ email, password }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(
+        mode === "login"
+        ? { email, password }
+        : { email, password, first_name, last_name }
+),
       });
 
       const data = await res.json();
+      console.log("register response:", data);
 
       if (!res.ok) {
         setError(data.message);
         return;
       }
 
-      console.log("Success:", data);
+      if (mode === "login") {
+        navigate("/dashboard");
+      } else {
+        navigate("/onboarding", { state: { first_name, userId: data.userId } });      }
 
     } catch (err) {
       setError("Error. Is backend running?");
@@ -385,13 +393,13 @@ export default function LoginPage() {
           <div className="toggle-row">
             <button
               className={`toggle-btn ${mode === "login" ? "active" : ""}`}
-              onClick={() => setMode("login")}
+              onClick={() => { setMode("login"); setEmail(""); setPassword(""); setFirstName(""); setLastName(""); }}
             >
               Log In
             </button>
             <button
               className={`toggle-btn ${mode === "signup" ? "active" : ""}`}
-              onClick={() => setMode("signup")}
+              onClick={() => { setMode("signup"); setEmail(""); setPassword(""); }}
             >
               Create Account
             </button>
@@ -406,7 +414,7 @@ export default function LoginPage() {
                 className="input-dark"
                 type="text"
                 placeholder="Jane"
-                value={firstName}
+                value={first_name}
                 onChange={e => setFirstName(e.target.value)}
               />
             </div>
@@ -420,7 +428,7 @@ export default function LoginPage() {
                 className="input-dark"
                 type="text"
                 placeholder="Doe"
-                value={lastName}
+                value={last_name}
                 onChange={e => setLastName(e.target.value)}
               />
             </div>

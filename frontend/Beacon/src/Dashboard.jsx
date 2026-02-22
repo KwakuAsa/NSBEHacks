@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap');
@@ -95,12 +96,35 @@ const styles = `
     font-weight: 300;
   }
 
+  .logout-btn {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: rgba(255,255,255,0.35);
+  font-size: 0.92rem;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #1a1a1a;
+  color: #ff4b4b;
+}
+
   /* DASHBOARD BUTTONS GRID */
   .button-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
-    max-width: 720px;
+    max-width: 800px;
   }
 
   .dash-btn {
@@ -109,6 +133,7 @@ const styles = `
     border-radius: 14px;
     padding: 28px 24px;
     cursor: pointer;
+    width: 600px;
     text-align: left;
     transition: all 0.2s ease;
     font-family: 'DM Sans', sans-serif;
@@ -201,6 +226,48 @@ const styles = `
     font-size: 0.9rem;
     font-style: italic;
   }
+
+  /* RESPONSIVE RULES */
+  @media (max-width: 720px) {
+    .dashboard-wrapper {
+      flex-direction: column;
+      height: auto;
+    }
+
+    .sidebar {
+      width: 100%;
+      flex-direction: row;
+      padding: 12px 14px;
+      gap: 8px;
+      align-items: center;
+      overflow-x: auto;
+    }
+
+    .sidebar-brand { margin-bottom: 0; padding-left: 6px; font-size: 1.05rem; }
+
+    .nav-item { white-space: nowrap; padding: 10px 12px; border-radius: 10px; }
+
+    .main-content {
+      padding: 18px;
+    }
+
+    .button-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .dash-btn { width: 100%; padding: 18px 16px; }
+
+    .explore-search-row { flex-direction: column; align-items: stretch; max-width: 100%; }
+
+    .explore-input { width: 100%; }
+
+    .plus-btn { width: 100%; margin-top: 8px; height: 48px; border-radius: 10px; }
+
+    .blank-page { height: auto; padding: 18px; }
+  }
 `;
 
 const dashboardButtons = [
@@ -262,7 +329,12 @@ function ResumesPage() {
 
 export default function Dashboard() {
   const [activePage, setActivePage] = useState("dashboard");
+  const navigate = useNavigate();
 
+  function handleLogout() {
+    // Clear any stored tokens/session here if needed
+    navigate("/");
+  }
   const navItems = [
     { id: "dashboard", label: "Dashboard", icon: "🏠" },
     { id: "explore", label: "Explore", icon: "🔍" },
@@ -291,6 +363,10 @@ export default function Dashboard() {
               {item.label}
             </button>
           ))}
+          <button className="logout-btn" onClick={handleLogout}>
+            <span className="nav-icon">🚪</span>
+            Log Out
+          </button>
         </div>
         <div className="main-content">
           {renderPage()}
