@@ -3,7 +3,6 @@ const dotenv = require("dotenv");
 const authRoutes = require("./src/routes/auth.routes");
 // const errorHandler = require("./middleware/error.middleware");
 
-dotenv.config();
 
 const app = express();
 
