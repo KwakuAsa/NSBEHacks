@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "./images/5.png";
+
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap');
@@ -10,7 +12,19 @@ const styles = `
   body, html, #root {
     height: 100%;
     margin: 0;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Playfair Display', serif;
+    body {
+    background: linear-gradient(
+    90deg,
+    #f4f1df 0%,
+    #f4f1df 40%,
+    #e6e3cf 48%,
+    #cfd6c1 52%,
+    #8fa68f 60%,
+    #315e4c 100%
+  );
+}
+
   }
 
   .auth-wrapper {
@@ -22,7 +36,7 @@ const styles = `
   /* LEFT PANEL */
   .left-panel {
     width: 50%;
-    background: #0a0a0a;
+    background: #f5f5dc;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,7 +53,7 @@ const styles = `
     left: -120px;
     width: 480px;
     height: 480px;
-    background: radial-gradient(circle, rgba(255,75,75,0.18) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(239, 233, 233, 0) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -58,17 +72,27 @@ const styles = `
     font-family: 'Syne', sans-serif;
     font-weight: 800;
     font-size: 1.6rem;
-    color: #fff;
+    color: #e2725c;
     letter-spacing: -0.5px;
     margin-bottom: 56px;
   }
 
+  .left-panel {
+  background: linear-gradient(
+    180deg,
+    #a4b792 0%,
+    #315e4c 60%,
+    #315e4c 100%
+  );
+  min-height: 100vh; /* makes it full height */
+}
+
   .brand span {
-    color: #ff4b4b;
+    color: #d6a6a6;
   }
  
   .form-heading {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Playfair Display', sans-serif;
     font-weight: 800;
     font-size: 2.6rem;
     color: #fff;
@@ -79,7 +103,7 @@ const styles = `
 
   .form-subheading {
     font-size: 0.95rem;
-    color: rgba(255,255,255,0.45);
+    color: rgb(255, 255, 255);
     margin-bottom: 40px;
     font-weight: 300;
   }
@@ -88,7 +112,7 @@ const styles = `
     display: flex;
     gap: 0;
     margin-bottom: 36px;
-    background: #1a1a1a;
+    background: #f5f5dc;
     border-radius: 10px;
     padding: 4px;
     width: 100%;
@@ -99,8 +123,8 @@ const styles = `
     padding: 10px 0;
     border: none;
     background: transparent;
-    color: rgba(255,255,255,0.4);
-    font-family: 'DM Sans', sans-serif;
+    color: #7d2500;
+    font-family: 'Playfair Display', sans-serif;
     font-size: 0.9rem;
     font-weight: 500;
     border-radius: 8px;
@@ -109,14 +133,14 @@ const styles = `
   }
 
   .toggle-btn.active {
-    background: #ff4b4b;
-    color: #fff;
+    background: #e2725c;
+    color: #f2ecea;
   }
 
   .field-label-custom {
     font-size: 0.78rem;
     font-weight: 500;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.91);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 8px;
@@ -124,9 +148,9 @@ const styles = `
   }
 
   .input-dark {
-    background: #141414 !important;
-    border: 1.5px solid #2a2a2a !important;
-    color: #fff !important;
+    background: #f5f5dc !important;
+    border: 1.5px solid #7d2500 !important;
+    color: #7d2500 !important;
     border-radius: 10px !important;
     padding: 14px 16px !important;
     font-family: 'DM Sans', sans-serif !important;
@@ -137,18 +161,18 @@ const styles = `
   }
 
   .input-dark::placeholder {
-    color: rgba(255,255,255,0.2) !important;
+    color: rgba(255, 255, 255, 0.98) !important;
   }
 
   .input-dark:focus {
-    border-color: #ff4b4b !important;
-    box-shadow: 0 0 0 3px rgba(255,75,75,0.12) !important;
+    border-color: #e2725c !important;
+    box-shadow: 0 0 0 3px #f5f5dc !important;
   }
 
   .submit-btn {
     width: 100%;
     padding: 14px;
-    background: #ff4b4b;
+    background: #e2725c;
     border: none;
     border-radius: 10px;
     color: #fff;
@@ -162,7 +186,7 @@ const styles = `
   }
 
   .submit-btn:hover {
-    background: #e03c3c;
+    background: #e2725c;
     transform: translateY(-1px);
   }
 
@@ -172,7 +196,7 @@ const styles = `
 
   .divider-text {
     text-align: center;
-    color: rgba(255,255,255,0.2);
+    color: rgb(255, 255, 255);
     font-size: 0.8rem;
     margin: 20px 0;
     position: relative;
@@ -194,10 +218,10 @@ const styles = `
   .oauth-btn {
     width: 100%;
     padding: 12px;
-    background: #1a1a1a;
-    border: 1.5px solid #2a2a2a;
+    background: #e2725c;
+    border: 1.5px solid #e2725c;
     border-radius: 10px;
-    color: rgba(255,255,255,0.7);
+    color: rgb(255, 255, 255);
     font-family: 'DM Sans', sans-serif;
     font-size: 0.9rem;
     font-weight: 500;
@@ -210,7 +234,7 @@ const styles = `
   }
 
   .oauth-btn:hover {
-    border-color: #444;
+    border-color: #7d2500;
     background: #222;
   }
 
@@ -222,7 +246,7 @@ const styles = `
 
   .forgot-link a {
     font-size: 0.82rem;
-    color: #ff4b4b;
+    color: #e2725c;
     text-decoration: none;
     font-weight: 500;
   }
@@ -230,7 +254,7 @@ const styles = `
   /* RIGHT PANEL */
   .right-panel {
     width: 50%;
-    background: #ffffff;
+    background: #f5f5dc;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -247,41 +271,48 @@ const styles = `
     right: -60px;
     width: 320px;
     height: 320px;
-    border: 2px solid rgba(0,0,0,0.04);
     border-radius: 50%;
   }
 
   .right-panel::after {
     content: '';
     position: absolute;
-    bottom: 10%;
+    bottom: 20%;
     left: -80px;
-    width: 400px;
-    height: 400px;
-    border: 2px solid rgba(0,0,0,0.04);
+    width: 200px;
+    height: 500px;
     border-radius: 50%;
   }
 
   .right-tagline {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
+    font-family: 'Playfair Display', sans-serif;
+    font-weight: 500;
     font-size: 3rem;
-    color: #0a0a0a;
+    color: #315e4c;
     line-height: 1.05;
-    letter-spacing: -2px;
+    letter-spacing: 1px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 5px;
     position: relative;
     z-index: 1;
   }
 
-  .right-tagline .accent {
-    color: #ff4b4b;
-  }
+
+  .right-pane img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  padding: 5px;
+  background: linear-gradient(45deg, #315e4c, #ff7a00);
+}
 
   .right-sub {
-    font-size: 1rem;
-    color: rgba(0,0,0,0.4);
+    font-size: 20px;
+    color: #315e4c;
     text-align: center;
     max-width: 320px;
     line-height: 1.6;
@@ -293,7 +324,7 @@ const styles = `
   .decorative-bar {
     width: 48px;
     height: 4px;
-    background: #ff4b4b;
+    background: #e2725c;
     border-radius: 2px;
     margin: 28px auto;
   }
@@ -310,7 +341,7 @@ const styles = `
     display: flex;
     align-items: center;
     gap: 12px;
-    color: rgba(0,0,0,0.55);
+    color: #7d2500;
     font-size: 0.9rem;
     margin-bottom: 14px;
     font-weight: 400;
@@ -319,7 +350,7 @@ const styles = `
   .feature-dot {
     width: 8px;
     height: 8px;
-    background: #ff4b4b;
+    background: #e2725c;
     border-radius: 50%;
     flex-shrink: 0;
   }
@@ -328,6 +359,20 @@ const styles = `
     margin-bottom: 18px;
     width: 100%;
   }
+    .logo-wrapper {
+  display: inline-block;
+  padding: 2px;
+  border-radius: 90%;
+  background: linear-gradient(135deg, #12100f2d, #e7d7c734);
+}
+
+.logo-wrapper img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 `;
 
 export default function LoginPage() {
@@ -497,7 +542,7 @@ export default function LoginPage() {
             </div>
           )}
 
-          {error && <p style={{ color: "#ff4b4b", fontSize: "0.85rem", marginBottom: 8 }}>{error}</p>}
+          {error && <p style={{ color: "#7d2500", fontSize: "0.5rem", marginBottom: 8 }}>{error}</p>}
           <button className="submit-btn" onClick={handleSubmit}>
             {mode === "login" ? "Sign In →" : "Create Account →"}
           </button>
@@ -505,19 +550,16 @@ export default function LoginPage() {
 
         {/* RIGHT: White Brand Panel */}
         <div className="right-panel">
+          <div className="logo-wrapper">
+            <img src={logo} alt="Logo" />
+          </div>
           <h2 className="right-tagline">
-            Build faster.<br />Ship <span className="accent">smarter.</span>
+            Your future is bigger than the box they put you in.<br />
           </h2>
           <div className="decorative-bar" />
           <p className="right-sub">
-            Everything your team needs — unified in one powerful workspace designed for modern teams.
+            <i>Discover paths. Build your roadmap. Make it out your way.</i>
           </p>
-          <ul className="feature-list" style={{ marginTop: 36 }}>
-            <li><span className="feature-dot" /> Real-time collaboration</li>
-            <li><span className="feature-dot" /> End-to-end encryption</li>
-            <li><span className="feature-dot" /> Seamless integrations</li>
-            <li><span className="feature-dot" /> Analytics & reporting</li>
-          </ul>
         </div>
       </div>
     </>

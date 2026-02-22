@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "./images/5.png";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap');
@@ -9,7 +10,7 @@ const styles = `
   body, html, #root {
     height: 100%;
     font-family: 'DM Sans', sans-serif;
-    background: #f4f4f4;
+    background: #f5f5dc;
   }
 
   .dashboard-wrapper {
@@ -21,7 +22,7 @@ const styles = `
   /* SIDEBAR */
   .sidebar {
     width: 240px;
-    background: #0a0a0a;
+    background: #315e4c;
     display: flex;
     flex-direction: column;
     padding: 32px 20px;
@@ -37,7 +38,7 @@ const styles = `
     padding-left: 12px;
   }
 
-  .sidebar-brand span { color: #ff4b4b; }
+  .sidebar-brand span { color: #e2725c; }
 
   .nav-item {
     display: flex;
@@ -58,12 +59,12 @@ const styles = `
   }
 
   .nav-item:hover {
-    background: #1a1a1a;
+    background: #315e4c;
     color: rgba(255,255,255,0.8);
   }
 
   .nav-item.active {
-    background: #ff4b4b;
+    background: #e2725c;
     color: #fff;
   }
 
@@ -84,13 +85,13 @@ const styles = `
     font-family: 'Syne', sans-serif;
     font-weight: 800;
     font-size: 2rem;
-    color: #0a0a0a;
+    color: #315e4c;
     letter-spacing: -1px;
     margin-bottom: 8px;
   }
 
   .page-subtitle {
-    color: rgba(0,0,0,0.4);
+    color: #315e4c;
     font-size: 0.92rem;
     margin-bottom: 40px;
     font-weight: 300;
@@ -115,8 +116,8 @@ const styles = `
 }
 
 .logout-btn:hover {
-  background: #1a1a1a;
-  color: #ff4b4b;
+  background: #315e4c;
+  color: #e2725c;
 }
 
   /* DASHBOARD BUTTONS GRID */
@@ -140,8 +141,8 @@ const styles = `
   }
 
   .dash-btn:hover {
-    border-color: #ff4b4b;
-    box-shadow: 0 4px 20px rgba(255,75,75,0.08);
+    border-color: #e2725c;
+    box-shadow: 0 4px 20px #315e4c;
     transform: translateY(-2px);
   }
 
@@ -155,14 +156,14 @@ const styles = `
     font-family: 'Syne', sans-serif;
     font-weight: 700;
     font-size: 1rem;
-    color: #0a0a0a;
+    color: #315e4c;
     display: block;
     margin-bottom: 4px;
   }
 
   .dash-btn-desc {
     font-size: 0.8rem;
-    color: rgba(0,0,0,0.4);
+    color: #315e4c;
     font-weight: 300;
   }
 
@@ -188,17 +189,17 @@ const styles = `
 
   .explore-input:focus {
     border-color: #ff4b4b;
-    box-shadow: 0 0 0 3px rgba(255,75,75,0.08);
+    box-shadow: 0 0 0 3px #315e4c;
   }
 
   .explore-input::placeholder {
-    color: rgba(0,0,0,0.3);
+    color: #315e4c;
   }
 
   .plus-btn {
     width: 48px;
     height: 48px;
-    background: #ff4b4b;
+    background: #e2725c;
     border: none;
     border-radius: 12px;
     color: #fff;
@@ -212,7 +213,7 @@ const styles = `
   }
 
   .plus-btn:hover {
-    background: #e03c3c;
+    background: #e2725c;
     transform: scale(1.05);
   }
 
@@ -243,7 +244,7 @@ const styles = `
       overflow-x: auto;
     }
 
-    .sidebar-brand { margin-bottom: 0; padding-left: 6px; font-size: 1.05rem; }
+    .sidebar-brand { margin-bottom: 0; margin-top: 40; padding-left: 6px; font-size: 1.05rem; }
 
     .nav-item { white-space: nowrap; padding: 10px 12px; border-radius: 10px; }
 
@@ -253,7 +254,7 @@ const styles = `
 
     .button-grid {
       grid-template-columns: 1fr;
-      gap: 12px;
+      gap: 5px;
       max-width: 100%;
       width: 100%;
     }
@@ -268,6 +269,20 @@ const styles = `
 
     .blank-page { height: auto; padding: 18px; }
   }
+.logo-wrapper {
+  display: inline-block;
+  padding: 2px;
+  border-radius: 90%;
+  background: linear-gradient(135deg, #12100f2d, #e7d7c734);
+}
+
+.logo-wrapper img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 25px;
+}
 `;
 
 const dashboardButtons = [
@@ -352,6 +367,9 @@ export default function Dashboard() {
       <style>{styles}</style>
       <div className="dashboard-wrapper">
         <div className="sidebar">
+          <div className="logo-wrapper">
+              <img src={logo} alt="Logo" />
+            </div>
           <div className="sidebar-brand">Beacon<span></span></div>
           {navItems.map((item) => (
             <button

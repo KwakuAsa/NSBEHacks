@@ -15,7 +15,7 @@ const styles = `
 
   .onboard-wrapper {
     min-height: 100vh;
-    background: #f6f6f6;
+    background: #f5f5dc;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,12 +27,10 @@ const styles = `
     font-family: 'Syne', sans-serif;
     font-weight: 800;
     font-size: 1.4rem;
-    color: #0a0a0a;
+    color: #7d2500;
     margin-bottom: 48px;
     letter-spacing: -0.5px;
   }
-
-  .onboard-brand span { color: #ff4b4b; }
 
   .bubble-container {
     display: flex;
@@ -46,7 +44,7 @@ const styles = `
     background: #fff;
     border-radius: 20px;
     padding: 32px 36px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    box-shadow: 0 4px 24px #315e4c;
     animation: popIn 0.3s ease;
   }
 
@@ -56,16 +54,16 @@ const styles = `
   }
 
   .bubble-welcome {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Playfair Display', sans-serif;
     font-weight: 800;
     font-size: 1.5rem;
-    color: #0a0a0a;
+    color: #315e4c;
     letter-spacing: -0.5px;
     margin-bottom: 6px;
   }
 
   .bubble-sub {
-    color: rgba(0,0,0,0.45);
+    color: #315e4c;
     font-size: 0.92rem;
     font-weight: 300;
     margin-bottom: 24px;
@@ -96,7 +94,7 @@ const styles = `
   }
 
   .bubble-input:focus {
-    border-color: #ff4b4b;
+    border-color: #e2725c;
     box-shadow: 0 0 0 3px rgba(255,75,75,0.08);
     background: #fff;
   }
@@ -118,7 +116,7 @@ const styles = `
   }
 
   .bubble-select:focus {
-    border-color: #ff4b4b;
+    border-color: #e2725c;
     box-shadow: 0 0 0 3px rgba(255,75,75,0.08);
     background: #fff;
   }
@@ -135,7 +133,7 @@ const styles = `
   }
 
   .dropzone:hover {
-    border-color: #ff4b4b;
+    border-color: #e2725c;
     background: rgba(255,75,75,0.02);
   }
 
@@ -151,7 +149,7 @@ const styles = `
   }
 
   .dropzone-text span {
-    color: #ff4b4b;
+    color: #e2725c;
     font-weight: 500;
     cursor: pointer;
   }
@@ -175,7 +173,7 @@ const styles = `
   .arrow-btn {
     width: 44px;
     height: 44px;
-    background: #ff4b4b;
+    background: #e2725c;
     border: none;
     border-radius: 50%;
     color: #fff;
@@ -190,7 +188,7 @@ const styles = `
   }
 
   .arrow-btn:hover {
-    background: #e03c3c;
+    background: #e2725c;
     transform: scale(1.08);
   }
 
@@ -203,7 +201,7 @@ const styles = `
   .finish-btn {
     width: 100%;
     padding: 14px;
-    background: #ff4b4b;
+    background: #e2725c;
     border: none;
     border-radius: 12px;
     color: #fff;
@@ -216,7 +214,7 @@ const styles = `
   }
 
   .finish-btn:hover {
-    background: #e03c3c;
+    background: #e2725c;
     transform: translateY(-1px);
   }
 
@@ -236,7 +234,7 @@ const styles = `
   }
 
   .dot.active {
-    background: #ff4b4b;
+    background: #e2725c;
     width: 24px;
     border-radius: 4px;
   }
