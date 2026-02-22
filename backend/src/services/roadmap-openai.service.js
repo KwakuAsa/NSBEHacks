@@ -68,19 +68,15 @@ Output schema:
     {
       "id": string,
       "title": string,
-      "outcome": string,
       "milestones": [
         {
           "id": string,
           "title": string,
-          "definitionOfDone": string,
           "tasks": [
             {
               "id": string,
               "title": string,
-              "whyItMatters": string,
-              "microsteps": string[],
-              "evidence": string[]
+              "whyItMatters": string
             }
           ]
         }
@@ -97,9 +93,7 @@ STRICT STRUCTURAL RULES
 - Phases must represent increasing sophistication.
 - Each phase: 2 to 4 milestones.
 - Each milestone: 2 to 4 tasks.
-- Each task: 3 to 6 microsteps.
-- Microsteps must be concrete, actionable actions (not vague goals).
-- Evidence must describe measurable proof (GitHub repo, deployed app, certification, project demo, etc.).
+- Tasks must be concrete, actionable actions (not vague goals).
 
 -----------------------------------------
 CONTENT QUALITY RULES
@@ -124,7 +118,7 @@ CONTENT QUALITY RULES
 -----------------------------------------
 REALISM CONSTRAINT
 -----------------------------------------
-
+Align and match the phases, milestones and tasks to the percieved skill level based on the resume and other fields.
 The roadmap must reflect how hiring actually works in the real world:
 - Include portfolio building.
 - Include skill stacking.
@@ -139,6 +133,7 @@ FINAL INSTRUCTION
 Return strictly valid JSON.
 Do not include markdown.
 Do not include comments.
+Do not includde additional fields.
 Do not include additional explanation.
   `.trim();
 
