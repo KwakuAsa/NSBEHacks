@@ -408,6 +408,7 @@ export default function LoginPage() {
       }
 
       if (mode === "login") {
+        localStorage.setItem("userId", data.userId);  
         navigate("/dashboard");
       } else {
         navigate("/onboarding", { state: { first_name, userId: data.userId } });      }
