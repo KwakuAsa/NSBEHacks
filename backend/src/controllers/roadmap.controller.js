@@ -93,6 +93,31 @@ async function getAllRoadMaps(req, res) {
         return res.status(500).json({ message: e.message });
     }
 
+
+}
+async function completeTask(req, res) {
+    try {
+        const { roadmapId, taskId } = req.params;
+        const { phaseId, milestoneId } = req.body;
+
+        if (!roadmapId || !taskId || !phaseId || !milestoneId) {
+            return res.status(400).json({ message: "Missing roadmapId/taskId/phaseId/milestoneId" });
+        }
+
+        const { data, error } = await supabase.rpc("mark_task_complete", {
+            p_roadmap_id: roadmapId,
+            p_phase_id: phaseId,
+            p_milestone_id: milestoneId,
+            p_task_id: taskId
+        });
+
+        if (error) return res.status(400).json({ message: error.message });
+
+        return res.json({ message: "Task marked complete", roadmap_json: data });
+    } catch (e) {
+        return res.status(500).json({ message: e.message });
+    }
+
 }
 
-module.exports = { generateRoadmap, getAllRoadMaps };
+module.exports = { generateRoadmap, getAllRoadMaps, completeTask };
