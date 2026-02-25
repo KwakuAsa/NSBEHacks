@@ -523,13 +523,13 @@ function RoadmapCard({ roadmap }) {
             background: submitted
               ? "rgba(49,94,76,0.15)"
               : allDone
-              ? "#e2725c"
-              : "rgba(0,0,0,0.1)",
+                ? "#e2725c"
+                : "rgba(0,0,0,0.1)",
             color: submitted
               ? "rgba(49,94,76,0.5)"
               : allDone
-              ? "#fff"
-              : "rgba(0,0,0,0.3)",
+                ? "#fff"
+                : "rgba(0,0,0,0.3)",
           }}
         >
           {submitted ? "✓ Already Submitted" : "Submit Roadmap"}
@@ -767,6 +767,7 @@ function ExplorePage() {
 
       console.log("status:", res.status);
       const data = await res.json();
+
       console.log("data:", data);
 
       setResults(data);
@@ -867,8 +868,8 @@ function ExplorePage() {
                   background: career.fitScore >= 80
                     ? "#315e4c"
                     : career.fitScore >= 60
-                    ? "#e2725c"
-                    : "#e8e3d8",
+                      ? "#e2725c"
+                      : "#e8e3d8",
                   color: career.fitScore >= 60 ? "#fff" : "#999",
                   borderRadius: "8px", padding: "4px 10px",
                   fontFamily: "'Syne', sans-serif", fontWeight: "800",
@@ -962,10 +963,11 @@ function ExplorePage() {
         <div style={sectionStyle}>
           <label style={labelStyle}>Problem Solving Style</label>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-            {optionBtn("problem_solving_style", "Analytical", "Analytical")}
+            {optionBtn("problem_solving_style", "Strategic", "Strategic")}
             {optionBtn("problem_solving_style", "Creative", "Creative")}
-            {optionBtn("problem_solving_style", "Practical", "Practical")}
-            {optionBtn("problem_solving_style", "Collaborative", "Collaborative")}
+            {optionBtn("problem_solving_style", "Logical", "Logical")}
+            {optionBtn("problem_solving_style", "Social", "Social")}
+            {optionBtn("problem_solving_style", "Detail Oriented", "Detail Oriented")}
           </div>
         </div>
 
